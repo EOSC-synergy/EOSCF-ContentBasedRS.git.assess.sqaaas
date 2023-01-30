@@ -1,0 +1,68 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.8
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/athenarc/EOSCF-ContentBasedRS:
+      branch: master
+      repo: https://github.com/athenarc/EOSCF-ContentBasedRS.git
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/athenarc/EOSCF-ContentBasedRS git:
+        commands:
+        - /usr/bin/env sh .sqa/script.nerdy-pear-robin.sh
+        container: qc.acc_pretty-tan-sheepdog
+  QC.Doc:
+    repos:
+      github.com/athenarc/EOSCF-ContentBasedRS find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.homely-viridian-zebra.sh
+        container: qc.doc_gloppy-burgundy-nightingale
+      github.com/athenarc/EOSCF-ContentBasedRS git:
+        commands:
+        - /usr/bin/env sh .sqa/script.cozy-olive-wolfhound.sh
+        container: qc.doc_flaky-cinnabar-chinchilla
+      github.com/athenarc/EOSCF-ContentBasedRS markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.chewy-tangerine-binturong.sh
+        container: qc.doc_blurry-blue-ibis
+  QC.Lic:
+    repos:
+      github.com/athenarc/EOSCF-ContentBasedRS licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.trippy-orange-dragonfly.sh
+        container: qc.lic_flaky-plum-gar
+  QC.Met:
+    repos:
+      github.com/athenarc/EOSCF-ContentBasedRS cff-converter-python:
+        commands:
+        - /usr/bin/env sh .sqa/script.slimy-myrtle-fly.sh
+        container: qc.met_sleepy-purple-beetle
+  QC.Sec:
+    repos:
+      github.com/athenarc/EOSCF-ContentBasedRS bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.silly-heliotrope-ant.sh
+        container: qc.sec_chewy-scarlet-grasshopper
+  QC.Sty:
+    repos:
+      github.com/athenarc/EOSCF-ContentBasedRS flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.sleepy-sangria-beetle.sh
+        container: qc.sty_scummy-persimmon-booby
+      github.com/athenarc/EOSCF-ContentBasedRS jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.gimpy-coral-turtle.sh
+        container: qc.sty_nerdy-silver-wolverine
+  QC.Ver:
+    repos:
+      github.com/athenarc/EOSCF-ContentBasedRS get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.droopy-amaranth-paradise.sh
+        container: qc.ver_homey-sepia-spaniel
+timeout: 5400
